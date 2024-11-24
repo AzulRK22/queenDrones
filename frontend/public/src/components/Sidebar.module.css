@@ -1,6 +1,6 @@
 .sidebar {
   width: 22%;
-  background-color: #0C3D6F;
+  background-color: #B2D0A8;
   padding: 20px;
   height: 100vh;
   display: flex;
@@ -61,7 +61,7 @@
 
 .navItem:hover,
 .navItem.active {
-  color: #1E88E5; /* Cambia el color del texto en hover y activo */
+  color: #2A4023; /* Cambia el color del texto en hover y activo */
 }
 
 .navItem:hover .icon,
@@ -71,5 +71,5 @@
 
 .navItem:hover .navText,
 .navItem.active .navText {
-  color: #1E88E5; /* Cambia el color del texto en hover y activo */
+  color: #2A4023; /* Cambia el color del texto en hover y activo */
 }

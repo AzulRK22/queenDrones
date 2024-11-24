@@ -3,7 +3,7 @@
 .container {
   display: flex;
   height: 100vh;
-  background-color: #0C3D6F;
+  background-color: #B2D0A8;
 }
 
 .content {
@@ -11,7 +11,7 @@
   margin-right: 20px; /* Espaciado derecho */
   margin-bottom: 45px;
   flex-grow: 1;
-  background-color: #0C3D6F;
+  background-color: #B2D0A8;
   padding: 20px;
   box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total del contenedor */
   overflow-y: auto;

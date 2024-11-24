@@ -16,7 +16,7 @@ const Sidebar = () => {
   return (
     <div className={styles.sidebar}>
       <div className={styles.logo}>
-        <img src="/images/logo-2.png" alt="Fire Eye Logo" />
+        <img src="/images/logo.png" alt="Fire Eye Logo" />
       </div>
       <ul className={styles.nav}>
         <li>
