@@ -1,0 +1,136 @@
+/* styles/dashboard.module.css */
+
+.container {
+  display: flex;
+  height: 100vh;
+  background-color: #0C3D6F;
+}
+
+.content {
+  margin-top: 30px; /* Espaciado superior */
+  margin-right: 20px; /* Espaciado derecho */
+  margin-bottom: 45px;
+  flex-grow: 1;
+  background-color: #0C3D6F;
+  padding: 20px;
+  box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total del contenedor */
+  overflow-y: auto;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Distribuye el espacio entre el searchBar y los íconos */
+  margin-bottom: 20px;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  background-color: #f3f3f3;
+  border-radius: 10px;
+  flex-grow: 1;
+  margin-top: 10px;
+  padding: 5px; /* Ajusta el padding para hacer la barra más pequeña */
+  margin-left: 120px;
+  margin-right: 10px; /* Espacio entre el searchBar y los íconos */
+  max-width: 1000px;/* Ajusta el ancho del searchBar */
+}
+
+.searchBar input {
+  flex-grow: 1;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+}
+
+.mainContent {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  height: auto; /* Ajusta la altura según el espacio disponible */
+}
+.notificationIcon {
+  position: relative;
+}
+
+.notificationIcon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  background-color: green;
+  border-radius: 50%;
+}
+.configPanel {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+}
+
+.sliderContainer {
+  margin-bottom: 20px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.calculateButton,
+.downloadButton {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: none;
+  border-radius: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.calculateButton {
+  background-color: #ff6f00;
+  color: white;
+}
+
+.calculateButton:hover {
+  background-color: #ff8f00;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.downloadButton {
+  background-color: #1976d2;
+  color: white;
+}
+
+.downloadButton:hover:not(:disabled) {
+  background-color: #1565c0;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.disabledButton {
+  background-color: #bdbdbd !important;
+  color: #757575 !important;
+  cursor: not-allowed;
+}
+
+.calculateButton:active,
+.downloadButton:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+  

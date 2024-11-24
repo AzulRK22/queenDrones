@@ -1,0 +1,36 @@
+{
+  "name": "fire",
+  "version": "1.0.0",
+  "main": "index.js",
+  "proxy": "http://localhost:5000",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@babel/cli": "^7.24.8",
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.4",
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^5.16.7",
+    "@mui/material": "^5.16.7",
+    "axios": "^1.7.5",
+    "leaflet": "^1.9.4",
+    "next": "^14.2.5",
+    "papaparse": "^5.4.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-leaflet": "^4.2.1",
+    "react-router-dom": "^6.26.0"
+  },
+  "devDependencies": {
+    "@svgr/webpack": "^8.1.0"
+  }
+}

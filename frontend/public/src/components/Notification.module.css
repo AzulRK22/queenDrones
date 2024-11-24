@@ -1,0 +1,46 @@
+.notificationContainer {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border-radius: 4px;
+    margin: 10px;
+    position: relative;
+  }
+  
+  .success {
+    background-color: #4caf50; /* Verde */
+    color: white;
+  }
+  
+  .warning {
+    background-color: #ff9800; /* Naranja */
+    color: white;
+  }
+  
+  .error {
+    background-color: #f44336; /* Rojo */
+    color: white;
+  }
+  
+  .info {
+    background-color: #2196f3; /* Azul */
+    color: white;
+  }
+  
+  .iconContainer {
+    display: flex;
+    align-items: center;
+    flex: 1;
+  }
+  
+  .iconContainer > svg {
+    margin-right: 8px;
+  }
+  
+  .closeButton {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
+  
+  

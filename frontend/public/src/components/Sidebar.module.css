@@ -1,0 +1,75 @@
+.sidebar {
+  width: 22%;
+  background-color: #0C3D6F;
+  padding: 20px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  margin-top:20px ;
+  margin-bottom: 30px;
+  text-align: center;
+  width: 100%;
+}
+
+.logo img {
+  width: 80%;
+  height: auto;
+}
+
+.nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  font-size: 1.5rem;
+  padding: 15px 20px; /* Añadir padding para mayor separación */
+  width: 100%;
+  text-align: left; /* Alinear el texto a la izquierda */
+  cursor: pointer;
+  background: transparent; /* Fondo transparente */
+  border: none; /* Sin bordes */
+  outline: none; /* Sin borde de enfoque */
+  color: #fff; /* Color del texto por defecto */
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  margin-left: 15%;
+  margin-right: 15px; /* Añadir margen entre el ícono y el texto */
+  transition: filter 0.3s ease; /* Transición suave para el ícono */
+}
+
+.navText {
+  font-size: 1.5rem;
+  transition: color 0.3s ease; /* Transición suave para el texto */
+}
+
+.navItem:hover,
+.navItem.active {
+  color: #1E88E5; /* Cambia el color del texto en hover y activo */
+}
+
+.navItem:hover .icon,
+.navItem.active .icon {
+  filter: brightness(0) saturate(100%) invert(42%) sepia(69%) saturate(2294%) hue-rotate(175deg) brightness(90%) contrast(99%);
+}
+
+.navItem:hover .navText,
+.navItem.active .navText {
+  color: #1E88E5; /* Cambia el color del texto en hover y activo */
+}
