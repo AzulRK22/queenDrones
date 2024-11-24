@@ -1,58 +1,65 @@
-# KEEPNAI Dashboard
+# **EcoVentus: AI-Driven UAV Monitoring Platform**
 
-**KEEPNAI Dashboard** is an application designed for the management and monitoring of emergencies, specifically fires, by emergency personnel and local users. The application allows visualization of incidents, available resources, weather conditions, and more, all in an intuitive and easy-to-use interface.
+## **Overview**
+**EcoVentus** is an advanced AI-powered platform designed to optimize UAV (Unmanned Aerial Vehicle) operations for industries like environmental monitoring, renewable energy, and agriculture. By combining real-time data collection, route planning, and analytics, EcoVentus enables precise, efficient, and sustainable solutions for monitoring and managing key resources.
 
-## Table of Contents
+The platform integrates a web-based interface to control and visualize UAV missions, leveraging artificial intelligence to detect patterns, analyze data, and support informed decision-making.
 
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Project Structure](#project-structure)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+---
 
-## Features
+## **Key Features**
+- **Real-Time Monitoring**: Visualize UAV flight paths and data collection in real-time.
+- **Customizable Drone Configuration**: Adjust parameters such as altitude, speed, and mission priority.
+- **AI-Driven Insights**: Automatically detect and analyze patterns in collected data.
+- **Interactive Dashboard**:
+  - View mission priority scores and flight times.
+  - Download Waypoint (WP) files for custom UAV configurations.
+  - Visualize routes on a detailed map.
+- **Scalable Use Cases**:
+  - Renewable energy: Inspect solar panels and wind turbines for efficiency and damage detection.
+  - Agriculture: Monitor crop health and optimize land use.
+  - Environmental assessment: Track deforestation, wildlife habitats, and urban development impact.
 
-- **Interactive map:** Visualization of fires, affected areas, and deployed resources.
-- **Drone monitoring:** Activate the algorithm to find the route the drone will take.
-- **Data loading:** Upload information collected by the drone to determine if there are fires.
-- **Reports:** Generation of detailed reports for post-incident analysis. (Planned for the future)
-- **Custom configuration:** Personalized settings for emergency and local users. (Planned for the future)
+---
 
-## Technologies Used
+## **Tech Stack**
+### **Frontend**
+- **HTML5, CSS3, JavaScript**: For creating a responsive and interactive web interface.
+- **Leaflet.js**: To render detailed maps and real-time UAV paths.
+- **React** (Optional): Scalable UI development.
 
-- **Frontend:**
-  - [Next.js](https://nextjs.org/)
-  - [React.js](https://reactjs.org/)
-  - [Styled-Components](https://styled-components.com/)
-  - [React Router](https://reactrouter.com/)
-  - [Google Fonts](https://fonts.google.com/)
+### **Backend**
+- **Node.js**: API development for communication between drones and the platform.
+- **Python**: For AI algorithms and data processing.
+- **Flask**: For hosting machine learning models.
 
-- **Backend:**
-  - [Flask](https://flask.palletsprojects.com/)
+### **Database**
+- **MongoDB**: Storing UAV routes, flight logs, and user information.
 
-- **Others:**
-  - [Node.js](https://nodejs.org/)
-  - [Git](https://git-scm.com/)
-  - [GitHub](https://github.com/)
+### **AI/ML Frameworks**
+- **TensorFlow / PyTorch**: For pattern recognition and anomaly detection.
 
-## Project Structure
+### **Cloud Integration**
+- **Google Cloud Vision API**: For image classification and analysis.
+- **AWS** or **Google Cloud**: For scalable hosting and database solutions.
 
-The project is divided into two main sections:
+---
 
-- **Frontend:** In the `frontend` directory, you'll find the Next.js application that includes all the user interface components.
-- **Backend (Future):** In the `backend` directory, there are plans to include the Flask API for data management and server logic.
+## **How to Run the Project**
+### **1. Prerequisites**
+Ensure you have the following installed:
+- **Node.js** (v16+)
+- **Python** (v3.9+)
+- **MongoDB**
+- **Google Cloud API Key** (for Vision API integration)
 
-## Installation
-
-Follow these steps to set up the project in your local environment:
+### **2. Clone the Repository**
 
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/AzulRK22/fire-eye-dashboard.git
-   cd fire-eye-dashboard
+   git clone [https://github.com/AzulRK22/fire-eye-dashboard.git](https://github.com/AzulRK22/queenDrones.git)
+   cd queenDrones
    ```
 
 2. **Set up the frontend:**
@@ -90,22 +97,6 @@ Follow these steps to set up the project in your local environment:
 
    Open your browser and go to http://localhost:3000 to see the application running.
 
-## Usage
-
-Main Screen: From here, users can choose to identify themselves as emergency personnel or local users to access the corresponding dashboard.
-Emergency Personnel Dashboard: Visualize incidents, available resources, monitor in real-time, and generate reports.
-Local User Dashboard: Access reports and customized settings for local users.
-
-## Contributing
-
-If you wish to contribute to the project, follow these steps:
-
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/new-functionality`).
-3. Make your changes and commit (`git commit -am 'Add new functionality'`).
-4. Push your branch (`git push origin feature/new-functionality`).
-5. Open a Pull Request.
-
 ## Screenshots
 
 ### Analysis
@@ -116,3 +107,37 @@ If you wish to contribute to the project, follow these steps:
 
 ### Virtual Assistant
 ![Virtual Assistant Screenshot](sample_data/virtual_assistant.png)
+
+## **Use Cases**
+### **1. Renewable Energy**
+- Inspect wind turbines for cracks and defects.
+- Monitor solar panel efficiency and cleanliness.
+
+### **2. Agriculture**
+- Track irrigation levels and optimize water usage.
+- Identify crop diseases and pest infestations.
+
+### **3. Environmental Monitoring**
+- Monitor urban development's environmental impact.
+- Detect illegal deforestation and changes in wildlife habitats.
+
+---
+
+## **Team Contributions**
+### **Multidisciplinary Expertise**:
+- **Electronics Engineering**: Designed and integrated UAV hardware components.
+- **Software Engineering**: Developed AI algorithms and the web-based interface.
+- **Data Analysis**: Processed UAV data for actionable insights.
+- **Environmental Engineering**: Ensured eco-friendly operations.
+- **Market Research**: Tailored solutions for specific industries.
+
+---
+
+## **License**
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+---
+
+## **Contact**
+For more details or to collaborate on this project, please contact:  
+https://www.azulrk.com
