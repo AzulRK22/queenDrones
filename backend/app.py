@@ -15,7 +15,7 @@ import logging
 
 def create_app():
 
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder="frontend_build")
     app.config.from_object(Config)
     
     CORS(app)
@@ -244,12 +244,16 @@ def create_app():
 
     
     @app.route('/')
-    def hello_world():
-        return 'dsf, World!'
-    
+    def home():
+        return "Welcome to the Backend!"
+
+
+
+        
     return app
 
 app = create_app()
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
+

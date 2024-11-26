@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import Map from '../public/src/components/Map';
+import dynamic from 'next/dynamic';
 import 'leaflet/dist/leaflet.css';
-import { Box, Typography, InputBase, IconButton, CircularProgress, TextField, Button } from "@mui/material";
+import { Box, Typography, TextField, Button, CircularProgress } from "@mui/material";
 import Sidebar2 from "../public/src/components/Sidebar2";
 import styles from "../public/src/components/Dashboard.module.css";
-import { getWeatherData2 } from '../public/src/services/api';
-import { getCoordinatesFromPostalCode } from '../public/src/services/geocode';
+import { getWeatherData2, getCoordinatesFromPostalCode } from '../public/src/services/api';
+
+// Dynamically import Map component to avoid issues during SSR
+const Map = dynamic(() => import('../public/src/components/Map'), {
+  ssr: false, // Disable server-side rendering for Map
+});
 
 const DashboardInicioL = () => {
   const [postalCode, setPostalCode] = useState(''); // Estado para almacenar el código postal
@@ -13,24 +17,26 @@ const DashboardInicioL = () => {
   const [weatherData2, setWeatherData2] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  // Fetch weather data only when coordinates change
   useEffect(() => {
-    if (coordinates) {
-      const fetchWeather = async () => {
-        setLoading(true);
-        try {
-          const weather = await getWeatherData2(coordinates.lat, coordinates.lng);
-          setWeatherData2(weather);
-        } catch (error) {
-          console.error("Error fetching weather data:", error);
-        } finally {
-          setLoading(false);
-        }
-      };
+    const fetchWeather = async () => {
+      if (!coordinates) return;
 
-      fetchWeather();
-    }
+      setLoading(true);
+      try {
+        const weather = await getWeatherData2(coordinates.lat, coordinates.lng);
+        setWeatherData2(weather);
+      } catch (error) {
+        console.error("Error fetching weather data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchWeather();
   }, [coordinates]);
 
+  // Handle postal code search and fetch coordinates
   const handleSearch = async () => {
     setLoading(true);
     try {
@@ -48,27 +54,6 @@ const DashboardInicioL = () => {
       <Sidebar2 />
       <div className={styles.content}>
         <Box className={styles.mainContent}>
-          <div className={styles.header}>
-            <div className={styles.searchBar}>
-              <IconButton aria-label="search" className={styles.searchIcon}>
-                <img src="/icons/lupa.svg" alt="Search Icon" />
-              </IconButton>
-              <InputBase
-                placeholder="Search"
-                inputProps={{ "aria-label": "search" }}
-                sx={{ marginLeft: 2, flex: 1 }}
-              />
-            </div>
-            <div className={styles.icons}>
-              <IconButton aria-label="light-mode">
-                <img src="/icons/IconSet.svg" alt="Light Mode Icon" />
-              </IconButton>
-              <IconButton aria-label="notifications">
-                <img src="/icons/Bell.svg" alt="Notifications Icon" />
-              </IconButton>
-            </div>
-          </div>
-
           <Typography variant="h4" gutterBottom>
             Home
           </Typography>
@@ -86,8 +71,8 @@ const DashboardInicioL = () => {
                 variant="outlined"
                 sx={{ mr: 2 }}
               />
-              <Button variant="contained" color="primary" onClick={handleSearch}>
-                Buscar
+              <Button variant="contained" color="primary" onClick={handleSearch} disabled={loading}>
+                {loading ? <CircularProgress size={24} /> : 'Buscar'}
               </Button>
             </Box>
           </Box>
@@ -106,6 +91,13 @@ const DashboardInicioL = () => {
             <Typography variant="h5" gutterBottom>
               Condiciones Meteorológicas Locales
             </Typography>
+            {loading ? (
+              <CircularProgress />
+            ) : weatherData2 ? (
+              <Typography>{JSON.stringify(weatherData2)}</Typography>
+            ) : (
+              <Typography>No hay datos meteorológicos disponibles.</Typography>
+            )}
           </Box>
         </Box>
       </div>
@@ -114,6 +106,3 @@ const DashboardInicioL = () => {
 };
 
 export default DashboardInicioL;
-
-
-

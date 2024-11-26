@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "5001:5000" # Map port 5000 in the container to 5001 on the host
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        REACT_APP_API_URL: http://backend:5000
+    environment:
+      REACT_APP_API_URL: http://backend:5000
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

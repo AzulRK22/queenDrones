@@ -40,3 +40,4 @@ urllib3==2.2.2
 wcwidth==0.2.13
 Werkzeug==3.0.3
 xyzservices==2024.6.0
+gunicorn
