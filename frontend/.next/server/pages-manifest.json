@@ -1,1 +1,7 @@
-{"/_app":"pages/_app.js","/_error":"pages/_error.js","/_document":"pages/_document.js","/dashboard-chat-e":"pages/dashboard-chat-e.html","/dashboard-chat-l":"pages/dashboard-chat-l.html","/dashboard-confi-e":"pages/dashboard-confi-e.html","/dashboard-incidentes-e":"pages/dashboard-incidentes-e.html","/dashboard-info-l":"pages/dashboard-info-l.html","/dashboard-inicio-e":"pages/dashboard-inicio-e.html","/dashboard-inicio-l":"pages/dashboard-inicio-l.html","/dashboard-monitoreo-e":"pages/dashboard-monitoreo-e.html","/dashboard-recu-l":"pages/dashboard-recu-l.html","/dashboard-reportes-e":"pages/dashboard-reportes-e.html","/dashboard-seti-l":"pages/dashboard-seti-l.html","/":"pages/index.html","/404":"pages/404.html"}
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/": "pages/index.js",
+  "/dashboard-inicio-e": "pages/dashboard-inicio-e.js"
+}

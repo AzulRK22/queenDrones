@@ -6,26 +6,30 @@ import OpacityIcon from '@mui/icons-material/Opacity';
 import Sidebar from "../public/src/components/Sidebar";
 import styles from "../public/src/components/Dashboard.module.css";
 import Notification from "../public/src/components/Notifications";
-import { getWeatherData } from '../public/src/services/api'; 
+import { getWeatherData } from '../public/src/services/api';
 
 const DashboardInicioE = () => {
   const [showNotification, setShowNotification] = useState(false);
   const [weatherData, setWeatherData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false); // Default loading state
+  const [error, setError] = useState(null); // Default error state
 
   useEffect(() => {
+    // Only run on the client side
+    if (typeof window === 'undefined') return;
+
     const fetchData = async () => {
+      setLoading(true);
+      setError(null); // Clear any previous error
       try {
         const weather = await getWeatherData();
-        if (weather && weather.main && weather.wind) {
-          setWeatherData(weather);
-        } else {
-          throw new Error("Datos meteorológicos incompletos");
+        if (!weather || !weather.main || !weather.wind) {
+          throw new Error('Incomplete weather data');
         }
-      } catch (error) {
-        console.error("Error fetching weather data:", error);
-        setError("No se pudieron obtener los datos meteorológicos.");
+        setWeatherData(weather);
+      } catch (err) {
+        console.error('Error fetching weather data:', err);
+        setError('No se pudieron obtener los datos meteorológicos.');
       } finally {
         setLoading(false);
       }
@@ -83,19 +87,24 @@ const DashboardInicioE = () => {
               src="https://geprif.maps.arcgis.com/apps/dashboards/262a55fd17ae4f828501be2289ae4d35"
               width="100%"
               height="500px"
-              style={{ border: 'none', borderRadius: '10px', boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)', marginTop: '20px' }}
+              style={{
+                border: 'none',
+                borderRadius: '10px',
+                boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+                marginTop: '20px',
+              }}
             ></iframe>
           </Box>
 
           <Box sx={{ mt: 4 }}>
-            <Typography variant="h5" align='center' gutterBottom>
+            <Typography variant="h5" align="center" gutterBottom>
               Condiciones Meteorológicas
             </Typography>
             {loading ? (
               <CircularProgress />
             ) : error ? (
               <Typography>{error}</Typography>
-            ) : weatherData && weatherData.main && weatherData.wind ? (
+            ) : weatherData ? (
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6} md={4}>
                   <Card sx={{ height: '100%' }}>
@@ -137,10 +146,3 @@ const DashboardInicioE = () => {
 };
 
 export default DashboardInicioE;
-
-
-
-
-
-
-

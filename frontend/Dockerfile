@@ -1,14 +1,21 @@
-# Step 1: Build the React/Next.js app
-FROM node:18.17.0 as build
+# Base image with Node.js
+FROM node:18
+
+# Set the working directory inside the container
 WORKDIR /app
-COPY ./ ./
-ARG REACT_APP_API_URL
-ENV REACT_APP_API_URL=${REACT_APP_API_URL}
-RUN npm install && npm run build
 
+# Install dependencies
+COPY package*.json ./
+RUN npm install
 
-# Step 2: Serve with Nginx
-FROM nginx:alpine
-COPY --from=build /app/.next /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# Copy application files
+COPY . .
+
+# Build the Next.js application
+RUN npm run build
+
+# Expose the default Next.js server port
+EXPOSE 3000
+
+# Start the Next.js server
+CMD ["npm", "run", "start", "--", "-p", "80"] 

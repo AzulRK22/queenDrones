@@ -4,7 +4,7 @@ services:
     build:
       context: ./backend
     ports:
-      - "5001:5000" # Map port 5000 in the container to 5001 on the host
+      - "5001:5000" # Map
     networks:
       - app-network
 
@@ -12,12 +12,19 @@ services:
     build:
       context: ./frontend
       args:
-        REACT_APP_API_URL: http://backend:5000
+        REACT_APP_API_URL_BUILD: "http://localhost:5001" # Backend URL during build
     environment:
-      REACT_APP_API_URL: http://backend:5000
+      REACT_APP_API_URL: "http://backend:5001" # Backend URL during runtime
+    ports:
+      - "3000:80"
     networks:
       - app-network
+
 
 networks:
   app-network:
     driver: bridge
+
+
+
+
