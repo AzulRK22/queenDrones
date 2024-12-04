@@ -22,15 +22,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/dashboard-inicio-e": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/dashboard-inicio-e.js"
-    ],
     "/dashboard-monitoreo-e": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/dashboard-monitoreo-e.js"
+    ],
+    "/dashboard-reportes-e": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/dashboard-reportes-e.js"
     ]
   },
   "ampFirstPages": []

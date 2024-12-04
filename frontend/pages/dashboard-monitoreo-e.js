@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
+import dynamic from 'next/dynamic';
+import FlightTakeoffIcon from "@mui/icons-material/FlightTakeoff";
 import axios from "axios";
 import {
   Box,
@@ -10,11 +11,20 @@ import {
   Slider,
   Switch,
   FormControlLabel,
+  TextField,
+  Tab,
+  Tabs
 } from "@mui/material";
 import Sidebar from "../public/src/components/Sidebar";
 import styles from "../public/src/components/Dashboard.module.css";
-import WaypointMapWrapper from "../public/src/components/WaypointMapWrapper";
-import DataTable from "../public/src/components/DataTable";
+
+// Importamos dinámicamente Leaflet para evitar errores en el servidor
+const LeafletMap = dynamic(() => import('../public/src/components/LeafletMap'), {
+  ssr: false, // Desactiva el renderizado en el servidor
+});
+
+// Importamos el componente de WaypointMapWrapper
+import WaypointMapWrapper from "../public/src/components/HistoricMap";
 
 const DashboardMonitoreo = () => {
   const [missions, setMissions] = useState([]);
@@ -29,6 +39,14 @@ const DashboardMonitoreo = () => {
   const [visionRange, setVisionRange] = useState(50);
   const [flightTime, setFlightTime] = useState(5);
 
+  // Input fields for latitude, longitude, and area
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
+  const [area, setArea] = useState("");
+
+  // Tab state for switching between maps
+  const [value, setValue] = useState(0);
+
   useEffect(() => {
     const fetchMissionsData = async () => {
       setLoading(true);
@@ -38,7 +56,10 @@ const DashboardMonitoreo = () => {
         if (response.data && Array.isArray(response.data.missions)) {
           setMissions(response.data.missions);
         } else {
-          console.error("API did not return an array of missions:", response.data);
+          console.error(
+            "API did not return an array of missions:",
+            response.data
+          );
           setMissions([]);
         }
       } catch (error) {
@@ -72,7 +93,9 @@ const DashboardMonitoreo = () => {
       if (response.data.success) {
         alert("Route generated successfully!");
         // Optionally, you can fetch updated missions data here
-        const updatedResponse = await axios.get("http://127.0.0.1:5000/api/missions");
+        const updatedResponse = await axios.get(
+          "http://127.0.0.1:5000/api/missions"
+        );
         setMissions(updatedResponse.data.missions || []);
       } else {
         console.error("Error generating route:", response.data.message);
@@ -84,17 +107,14 @@ const DashboardMonitoreo = () => {
 
   const handleDownloadRoute = async () => {
     try {
-      const response = await axios.get(
-        `http://127.0.0.1:5000/get_wp_file`,
-        {
-          responseType: 'blob',
-        }
-      );
-      
+      const response = await axios.get(`http://127.0.0.1:5000/get_wp_file`, {
+        responseType: "blob",
+      });
+
       const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
+      const link = document.createElement("a");
       link.href = url;
-      link.setAttribute('download', 'mission.waypoints');
+      link.setAttribute("download", "mission.waypoints");
       document.body.appendChild(link);
       link.click();
       link.remove();
@@ -102,6 +122,10 @@ const DashboardMonitoreo = () => {
       console.error("Error downloading WP file:", error);
       alert("Failed to download the file. Please try again.");
     }
+  };
+
+  const handleTabChange = (_, newValue) => {
+    setValue(newValue);
   };
 
   return (
@@ -133,91 +157,134 @@ const DashboardMonitoreo = () => {
             Monitoring
           </Typography>
 
-          {loading ? (
-            <Typography>Loading...</Typography>
-          ) : error ? (
-            <Typography color="error">{error}</Typography>
-          ) : (
-            <DataTable
-              routes={missions}
-              onSelectRoute={handleRouteSelect}
-              onDownloadRoute={handleDownloadRoute}
-            />
+          {/* Tabs for multiple maps */}
+          <Tabs value={value} onChange={handleTabChange}>
+            <Tab label="Map with Inputs" />
+            <Tab label="Drone Configuration" />
+            <Tab label="Anomaly detection" />
+          </Tabs>
+
+          {/* Tab 1: Map with Inputs */}
+          {value === 0 && (
+            <div>
+              <LeafletMap />
+              <Box>
+                <TextField
+                  label="Latitude"
+                  type="number"
+                  value={latitude}
+                  onChange={(e) => setLatitude(e.target.value)}
+                  fullWidth
+                  margin="normal"
+                />
+                <TextField
+                  label="Longitude"
+                  type="number"
+                  value={longitude}
+                  onChange={(e) => setLongitude(e.target.value)}
+                  fullWidth
+                  margin="normal"
+                />
+                <TextField
+                  label="Area (km²)"
+                  type="number"
+                  value={area}
+                  onChange={(e) => setArea(e.target.value)}
+                  fullWidth
+                  margin="normal"
+                />
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => {
+                    // Add logic to send data when implemented
+                    alert("Data submitted: Latitude, Longitude, Area");
+                  }}
+                  sx={{ background: "#FB8C00" }}
+                >
+                  Submit Data
+                </Button>
+              </Box>
+            </div>
           )}
 
-          <WaypointMapWrapper selectedRoute={selectedRoute} />
-
-          <Box className={styles.configPanel}>
-            <Typography variant="h6" gutterBottom>
-              Drone Configuration
-            </Typography>
-            <Box className={styles.sliderContainer}>
-              <Typography>Altitude: {altitude} m</Typography>
-              <Slider
-                value={altitude}
-                onChange={(_, newValue) => setAltitude(newValue)}
-                min={0}
-                max={100}
-                sx={{ color: "#FB8C00" }}
-              />
-            </Box>
-            <Box className={styles.sliderContainer}>
-              <Typography>Speed: {speed} m/s</Typography>
-              <Slider
-                value={speed}
-                onChange={(_, newValue) => setSpeed(newValue)}
-                min={0}
-                max={20}
-                sx={{ color: "#FB8C00" }}
-              />
-            </Box>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={mode === "high"}
-                  onChange={(e) => setMode(e.target.checked ? "high" : "low")}
-                  sx={{
-                    "& .MuiSwitch-switchBase": {
-                      color: "#FB8C00",
-                    },
-                    "& .MuiSwitch-switchBase.Mui-checked": {
-                      color: "#FB8C00",
-                    },
-                  }}
+          {/* Tab 2: Initial Map & Drone Configuration */}
+          {value === 1 && (
+            <div>
+              <WaypointMapWrapper />
+              <Box className={styles.configPanel}>
+                <Typography variant="h6" gutterBottom>
+                  Drone Configuration
+                </Typography>
+                <Box className={styles.sliderContainer}>
+                  <Typography>Altitude: {altitude} m</Typography>
+                  <Slider
+                    value={altitude}
+                    onChange={(_, newValue) => setAltitude(newValue)}
+                    min={0}
+                    max={100}
+                    sx={{ color: "#FB8C00" }}
+                  />
+                </Box>
+                <Box className={styles.sliderContainer}>
+                  <Typography>Speed: {speed} m/s</Typography>
+                  <Slider
+                    value={speed}
+                    onChange={(_, newValue) => setSpeed(newValue)}
+                    min={0}
+                    max={20}
+                    sx={{ color: "#FB8C00" }}
+                  />
+                </Box>
+                <FormControlLabel
+                  control={
+                    <Switch
+                      checked={mode === "high"}
+                      onChange={(e) => setMode(e.target.checked ? "high" : "low")}
+                      sx={{
+                        "& .MuiSwitch-switchBase": {
+                          color: "#FB8C00",
+                        },
+                        "& .MuiSwitch-switchBase.Mui-checked": {
+                          color: "#FB8C00",
+                        },
+                      }}
+                    />
+                  }
+                  label={mode === "high" ? "High Altitude" : "Low Altitude"}
                 />
-              }
-              label={mode === "high" ? "High Altitude" : "Low Altitude"}
-            />
-            <Box className={styles.sliderContainer}>
-              <Typography>Vision Range: {visionRange} m</Typography>
-              <Slider
-                value={visionRange}
-                onChange={(_, newValue) => setVisionRange(newValue)}
-                min={50}
-                max={500}
-                sx={{ color: "#FB8C00" }}
-              />
-            </Box>
-            <Box className={styles.sliderContainer}>
-              <Typography>Flight Time: {flightTime} min</Typography>
-              <Slider
-                value={flightTime}
-                onChange={(_, newValue) => setFlightTime(newValue)}
-                min={5}
-                max={60}
-                sx={{ color: "#FB8C00" }}
-              />
-            </Box>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleGenerateRoute}
-              sx={{ background: "#FB8C00" }}
-              startIcon={<FlightTakeoffIcon />}
-            >
-              Generate Route
-            </Button>
-          </Box>
+                <Box className={styles.sliderContainer}>
+                  <Typography>Vision Range: {visionRange} m</Typography>
+                  <Slider
+                    value={visionRange}
+                    onChange={(_, newValue) => setVisionRange(newValue)}
+                    min={50}
+                    max={500}
+                    sx={{ color: "#FB8C00" }}
+                  />
+                </Box>
+                <Box className={styles.sliderContainer}>
+                  <Typography>Flight Time: {flightTime} min</Typography>
+                  <Slider
+                    value={flightTime}
+                    onChange={(_, newValue) => setFlightTime(newValue)}
+                    min={5}
+                    max={60}
+                    sx={{ color: "#FB8C00" }}
+                  />
+                </Box>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleGenerateRoute}
+                  sx={{ background: "#FB8C00" }}
+                  startIcon={<FlightTakeoffIcon />}
+                >
+                  Generate Route
+                </Button>
+              </Box>
+            </div>
+          )}
         </Box>
       </div>
     </div>
