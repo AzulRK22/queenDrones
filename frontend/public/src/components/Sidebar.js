@@ -16,11 +16,11 @@ const Sidebar = () => {
   return (
     <div className={styles.sidebar}>
       <div className={styles.logo}>
-        <img src="/images/logo.png" alt="Fire Eye Logo" />
+        <img src="/images/logo.png" alt="Queen Drones Logo" />
       </div>
       <ul className={styles.nav}>
         <li>
-          <button 
+          <button
             className={`${styles.navItem} ${isActive('/dashboard-inicio-e') ? styles.active : ''}`}
             onClick={() => handleNavigation('/dashboard-inicio-e')}
           >
@@ -29,7 +29,7 @@ const Sidebar = () => {
           </button>
         </li>
         <li>
-          <button 
+          <button
             className={`${styles.navItem} ${isActive('/dashboard-monitoreo-e') ? styles.active : ''}`}
             onClick={() => handleNavigation('/dashboard-monitoreo-e')}
           >
@@ -38,7 +38,7 @@ const Sidebar = () => {
           </button>
         </li>
         <li>
-          <button 
+          <button
             className={`${styles.navItem} ${isActive('/dashboard-reportes-e') ? styles.active : ''}`}
             onClick={() => handleNavigation('/dashboard-reportes-e')}
           >
@@ -47,7 +47,7 @@ const Sidebar = () => {
           </button>
         </li>
         <li>
-          <button 
+          <button
             className={`${styles.navItem} ${isActive('/dashboard-incidentes-e') ? styles.active : ''}`}
             onClick={() => handleNavigation('/dashboard-incidentes-e')}
           >
@@ -56,7 +56,7 @@ const Sidebar = () => {
           </button>
         </li>
         <li>
-          <button 
+          <button
             className={`${styles.navItem} ${isActive('/dashboard-chat-e') ? styles.active : ''}`}
             onClick={() => handleNavigation('/dashboard-chat-e')}
           >
@@ -65,7 +65,7 @@ const Sidebar = () => {
           </button>
         </li>
         <li>
-          <button 
+          <button
             className={`${styles.navItem} ${isActive('/dashboard-confi-e') ? styles.active : ''}`}
             onClick={() => handleNavigation('/dashboard-confi-e')}
           >
@@ -74,10 +74,7 @@ const Sidebar = () => {
           </button>
         </li>
         <li>
-          <button 
-            className={`${styles.navItem} ${isActive('/logout') ? styles.active : ''}`}
-            onClick={() => router.push('/')}
-          >
+          <button className={`${styles.navItem} ${isActive('/logout') ? styles.active : ''}`} onClick={() => router.push('/')}>
             <img src="/icons/salir.svg" alt="Logout Icon" className={styles.icon} />
             <span className={styles.navText}>Logout</span>
           </button>

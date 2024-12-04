@@ -1,15 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+/* Estilo general del sidebar */
 .sidebar {
+  font-family: 'Poppins', sans-serif;
   width: 22%;
-  background-color: #B2D0A8;
+  background-color: #1B2A49;
   padding: 20px;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: width 0.3s ease;
 }
 
+/* Logo */
 .logo {
-  margin-top:20px ;
+  margin-top: 20px;
   margin-bottom: 30px;
   text-align: center;
   width: 100%;
@@ -18,8 +23,14 @@
 .logo img {
   width: 80%;
   height: auto;
+  transition: transform 0.3s ease;
 }
 
+.logo:hover img {
+  transform: scale(1.1);
+}
+
+/* Navegación */
 .nav {
   list-style: none;
   padding: 0;
@@ -34,42 +45,84 @@
 .navItem {
   display: flex;
   align-items: center;
-  margin: 20px 0;
+  margin: 15px 0;
   font-size: 1.5rem;
-  padding: 15px 20px; /* Añadir padding para mayor separación */
+  padding: 15px 20px;
   width: 100%;
-  text-align: left; /* Alinear el texto a la izquierda */
+  text-align: left;
   cursor: pointer;
-  background: transparent; /* Fondo transparente */
-  border: none; /* Sin bordes */
-  outline: none; /* Sin borde de enfoque */
-  color: #fff; /* Color del texto por defecto */
-}
-
-.icon {
-  width: 40px;
-  height: 40px;
-  margin-left: 15%;
-  margin-right: 15px; /* Añadir margen entre el ícono y el texto */
-  transition: filter 0.3s ease; /* Transición suave para el ícono */
-}
-
-.navText {
-  font-size: 1.5rem;
-  transition: color 0.3s ease; /* Transición suave para el texto */
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  border-radius: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .navItem:hover,
 .navItem.active {
-  color: #2A4023; /* Cambia el color del texto en hover y activo */
+  background-color: #4D6A9A;
+  transform: translateX(10px);
+}
+
+.icon {
+  width: 35px;
+  height: 35px;
+  margin-right: 15px;
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(300deg) brightness(103%) contrast(103%);
+  transition: transform 0.3s ease;
+}
+
+.navText {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
 }
 
 .navItem:hover .icon,
 .navItem.active .icon {
-  filter: brightness(0) saturate(100%) invert(42%) sepia(69%) saturate(2294%) hue-rotate(175deg) brightness(90%) contrast(99%);
+  transform: scale(1.1);
 }
 
 .navItem:hover .navText,
 .navItem.active .navText {
-  color: #2A4023; /* Cambia el color del texto en hover y activo */
+  color: #B9E0FF;
 }
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+
+  .navItem {
+    font-size: 1.2rem;
+  }
+
+  .icon {
+    width: 25px;
+    height: 25px;
+  }
+
+  .navText {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navItem {
+    padding: 10px 15px;
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .navText {
+    font-size: 1rem;
+  }
+}
+

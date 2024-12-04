@@ -4,39 +4,72 @@ import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import AirIcon from '@mui/icons-material/Air';
 import OpacityIcon from '@mui/icons-material/Opacity';
 import Sidebar from "../public/src/components/Sidebar";
-import styles from "../public/src/components/Dashboard.module.css";
 import Notification from "../public/src/components/Notifications";
-import { getWeatherData } from '../public/src/services/api';
+import styles from "../public/src/components/Dashboard.module.css";
+
+// Importamos las librerías necesarias de Leaflet
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import L from 'leaflet';
 
 const DashboardInicioE = () => {
   const [showNotification, setShowNotification] = useState(false);
   const [weatherData, setWeatherData] = useState(null);
-  const [loading, setLoading] = useState(false); // Default loading state
-  const [error, setError] = useState(null); // Default error state
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const [location, setLocation] = useState(null);
 
   useEffect(() => {
-    // Only run on the client side
     if (typeof window === 'undefined') return;
 
-    const fetchData = async () => {
+    // Obtener las coordenadas del usuario
+    const getLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            setLocation({
+              lat: position.coords.latitude,
+              lon: position.coords.longitude,
+            });
+          },
+          (err) => {
+            console.error("Error obteniendo la ubicación:", err);
+            setError("No se pudo obtener la ubicación.");
+          }
+        );
+      } else {
+        setError("La geolocalización no está soportada en este navegador.");
+      }
+    };
+
+    getLocation();
+  }, []);
+
+  useEffect(() => {
+    if (!location) return;
+
+    const fetchWeatherData = async () => {
       setLoading(true);
-      setError(null); // Clear any previous error
+      setError(null);
       try {
-        const weather = await getWeatherData();
-        if (!weather || !weather.main || !weather.wind) {
-          throw new Error('Incomplete weather data');
+        const response = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&appid=YOUR_API_KEY&units=metric&lang=es`
+        );
+        const data = await response.json();
+        if (data.cod !== 200) {
+          throw new Error('No se pudieron obtener los datos del clima');
         }
-        setWeatherData(weather);
+        setWeatherData(data);
       } catch (err) {
-        console.error('Error fetching weather data:', err);
-        setError('No se pudieron obtener los datos meteorológicos.');
+        console.error("Error obteniendo los datos del clima:", err);
+        setError("No se pudieron obtener los datos meteorológicos.");
       } finally {
         setLoading(false);
       }
     };
 
-    fetchData();
-  }, []);
+    fetchWeatherData();
+  }, [location]);
 
   const handleNotificationClick = () => {
     setShowNotification(true);
@@ -59,7 +92,7 @@ const DashboardInicioE = () => {
                 <img src="/icons/lupa.svg" alt="Search Icon" />
               </IconButton>
               <InputBase
-                placeholder="Search"
+                placeholder="Buscar"
                 inputProps={{ "aria-label": "search" }}
                 sx={{ marginLeft: 2, flex: 1 }}
               />
@@ -82,18 +115,20 @@ const DashboardInicioE = () => {
             Home
           </Typography>
 
+          {/* Mapa de México con Leaflet */}
           <Box sx={{ mt: 2 }}>
-            <iframe
-              src="https://geprif.maps.arcgis.com/apps/dashboards/262a55fd17ae4f828501be2289ae4d35"
-              width="100%"
-              height="500px"
-              style={{
-                border: 'none',
-                borderRadius: '10px',
-                boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
-                marginTop: '20px',
-              }}
-            ></iframe>
+            <MapContainer center={[23.6345, -102.5528]} zoom={6} style={{ height: '500px', width: '100%' }}>
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              />
+              {/* Puedes agregar un marcador si deseas */}
+              <Marker position={[23.6345, -102.5528]}>
+                <Popup>
+                  ¡Bienvenido a México!
+                </Popup>
+              </Marker>
+            </MapContainer>
           </Box>
 
           <Box sx={{ mt: 4 }}>

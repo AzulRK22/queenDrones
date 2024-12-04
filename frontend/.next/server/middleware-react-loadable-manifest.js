@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{}"
+self.__REACT_LOADABLE_MANIFEST="{\"public/src/components/WaypointMapWrapper.js -> ./WaypointMap\":{\"id\":\"public/src/components/WaypointMapWrapper.js -> ./WaypointMap\",\"files\":[\"static/chunks/public_src_components_WaypointMap_js.js\"]}}"
