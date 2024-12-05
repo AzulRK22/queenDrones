@@ -31,11 +31,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/dashboard-monitoreo-e.js"
-    ],
-    "/dashboard-reportes-e": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/dashboard-reportes-e.js"
     ]
   },
   "ampFirstPages": []

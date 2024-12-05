@@ -291,22 +291,31 @@ const DashboardMonitoreo = () => {
                     sx={{ color: "#FB8C00" }}
                   />
                 </Box>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleGenerateRoute}
-                  sx={{ background: "#FB8C00" }}
+                {/* Alineación de los botones */}
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    marginTop: 2,
+                  }}
                 >
-                  Generate Route
-                </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleDownloadRoute}
-                  sx={{ background: "#FB8C00", marginTop: 2 }}
-                >
-                  Download Route
-                </Button>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleGenerateRoute}
+                    sx={{ background: "#FB8C00" }}
+                  >
+                    Generate Route
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleDownloadRoute}
+                    sx={{ background: "#FB8C00" }}
+                  >
+                    Download Route
+                  </Button>
+                </Box>
               </Box>
             </div>
           )}
