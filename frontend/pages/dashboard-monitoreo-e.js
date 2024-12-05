@@ -167,7 +167,16 @@ const DashboardMonitoreo = () => {
           {/* Tab 1: Map with Inputs */}
           {value === 0 && (
             <div>
-              <LeafletMap />
+              {/* Using an iframe to load the HTML file */}
+              <iframe
+                src="/htmls/cdmx_map2.html" // Path relative to the public folder
+                width="100%" 
+                height="600px" 
+                frameBorder="0"
+                title="CDMX Map"
+                style={{ border: "none", height: "500px" }} // Adjust height to fit screen
+              ></iframe>
+
               <Box>
                 <TextField
                   label="Latitude"
@@ -176,6 +185,7 @@ const DashboardMonitoreo = () => {
                   onChange={(e) => setLatitude(e.target.value)}
                   fullWidth
                   margin="normal"
+                  sx={{ marginBottom: 1 }} // Reduced margin for closer spacing
                 />
                 <TextField
                   label="Longitude"
@@ -184,6 +194,7 @@ const DashboardMonitoreo = () => {
                   onChange={(e) => setLongitude(e.target.value)}
                   fullWidth
                   margin="normal"
+                  sx={{ marginBottom: 1 }} // Reduced margin for closer spacing
                 />
                 <TextField
                   label="Area (km²)"
@@ -192,6 +203,7 @@ const DashboardMonitoreo = () => {
                   onChange={(e) => setArea(e.target.value)}
                   fullWidth
                   margin="normal"
+                  sx={{ marginBottom: 2 }} // Reduced margin for closer spacing
                 />
                 <Button
                   variant="contained"
@@ -258,8 +270,8 @@ const DashboardMonitoreo = () => {
                   <Slider
                     value={visionRange}
                     onChange={(_, newValue) => setVisionRange(newValue)}
-                    min={50}
-                    max={500}
+                    min={5}
+                    max={120}
                     sx={{ color: "#FB8C00" }}
                   />
                 </Box>
@@ -269,7 +281,7 @@ const DashboardMonitoreo = () => {
                     value={flightTime}
                     onChange={(_, newValue) => setFlightTime(newValue)}
                     min={5}
-                    max={60}
+                    max={120}
                     sx={{ color: "#FB8C00" }}
                   />
                 </Box>
@@ -278,11 +290,33 @@ const DashboardMonitoreo = () => {
                   color="primary"
                   onClick={handleGenerateRoute}
                   sx={{ background: "#FB8C00" }}
-                  startIcon={<FlightTakeoffIcon />}
                 >
                   Generate Route
                 </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleDownloadRoute}
+                  sx={{ background: "#FB8C00", marginTop: 2 }}
+                >
+                  Download Route
+                </Button>
               </Box>
+            </div>
+          )}
+
+          {/* Tab 3: Anomaly detection */}
+          {value === 2 && (
+            <div>
+              {/* Using an iframe to load the anomaly detection page */}
+              <iframe
+                src="/htmls/anomaly.html" // Path relative to the public folder
+                width="100%" 
+                height="600px" 
+                frameBorder="0"
+                title="Anomaly Detection"
+                style={{ border: "none", height: "500px" }} // Adjust height to fit screen
+              ></iframe>
             </div>
           )}
         </Box>
