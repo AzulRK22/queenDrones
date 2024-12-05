@@ -2,7 +2,8 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/dashboard-monitoreo-e": "pages/dashboard-monitoreo-e.js",
   "/dashboard-reportes-e": "pages/dashboard-reportes-e.js",
+  "/dashboard-monitoreo-e": "pages/dashboard-monitoreo-e.js",
+  "/dashboard-inicio-e": "pages/dashboard-inicio-e.js",
   "/dashboard-incidentes-e": "pages/dashboard-incidentes-e.js"
 }

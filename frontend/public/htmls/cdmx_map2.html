@@ -1,87 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mapa Interactivo</title>
     
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    
-        <script>
-            L_NO_TOUCH = false;
-            L_DISABLE_3D = false;
-        </script>
-    
-    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
-    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
-    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <!-- Hojas de estilo -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
-    
-            <meta name="viewport" content="width=device-width,
-                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-            <style>
-                #map_9925c70d3fc14dae1ab6277950ca3242 {
-                    position: relative;
-                    width: 550.0px;
-                    height: 350.0px;
-                    left: 0.0%;
-                    top: 0.0%;
-                }
-                .leaflet-container { font-size: 1rem; }
-            </style>
-        
+
+    <style>
+        /* Estilos básicos */
+        html, body { width: 100%; height: 100%; margin: 0; padding: 0; }
+        #map { position: absolute; top: 0; bottom: 0; left: 0; right: 0; }
+    </style>
+
 </head>
 <body>
+    <!-- Mapa interactivo -->
+    <div id="map" class="folium-map"></div>
+
+    <!-- Scripts -->
+    <!-- Cargar primero Leaflet -->
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
     
-    
-            <div class="folium-map" id="map_9925c70d3fc14dae1ab6277950ca3242" ></div>
-        
+    <!-- Luego los demás scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js" defer></script>
+
+    <script>
+        // Asegúrate de que el código depende de que Leaflet esté cargado correctamente
+        var map = L.map('map', {
+            center: [19.07500770940618, -98.91338570692821],
+            zoom: 11,
+            zoomControl: true,
+            preferCanvas: false
+        });
+
+        // Capa de mapa base de OpenStreetMap
+        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            maxZoom: 19
+        }).addTo(map);
+
+        // Capa adicional (Google Earth Engine)
+        L.tileLayer("https://earthengine.googleapis.com/v1/projects/ee-valdeshhector/maps/21950d7e2bfdc79a02bf15a5c276a35b-3a78035e0b23d44c5efa95be466538c5/tiles/{z}/{x}/{y}", {
+            attribution: 'Map Data &copy; <a href="https://earthengine.google.com/">Google Earth Engine</a>',
+            maxZoom: 18
+        }).addTo(map);
+    </script>
 </body>
-<script>
-    
-    
-            var map_9925c70d3fc14dae1ab6277950ca3242 = L.map(
-                "map_9925c70d3fc14dae1ab6277950ca3242",
-                {
-                    center: [19.07500770940618, -98.91338570692821],
-                    crs: L.CRS.EPSG3857,
-                    zoom: 11,
-                    zoomControl: true,
-                    preferCanvas: false,
-                }
-            );
-
-            
-
-        
-    
-            var tile_layer_bfebe98e1367c1f062efd27a0d614164 = L.tileLayer(
-                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
-            );
-        
-    
-            tile_layer_bfebe98e1367c1f062efd27a0d614164.addTo(map_9925c70d3fc14dae1ab6277950ca3242);
-        
-    
-            var tile_layer_d801e4ce140a148e201969e01247e1eb = L.tileLayer(
-                "https://earthengine.googleapis.com/v1/projects/ee-valdeshhector/maps/21950d7e2bfdc79a02bf15a5c276a35b-3a78035e0b23d44c5efa95be466538c5/tiles/{z}/{x}/{y}",
-                {"attribution": "Map Data \u0026copy; \u003ca href=\"https://earthengine.google.com/\"\u003eGoogle Earth Engine\u003c/a\u003e", "detectRetina": false, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
-            );
-        
-    
-            tile_layer_d801e4ce140a148e201969e01247e1eb.addTo(map_9925c70d3fc14dae1ab6277950ca3242);
-        
-    
-            tile_layer_bfebe98e1367c1f062efd27a0d614164.addTo(map_9925c70d3fc14dae1ab6277950ca3242);
-        
-    
-            tile_layer_d801e4ce140a148e201969e01247e1eb.addTo(map_9925c70d3fc14dae1ab6277950ca3242);
-        
-</script>
 </html>
