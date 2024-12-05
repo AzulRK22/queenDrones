@@ -12,11 +12,6 @@
   ],
   "rootMainFiles": [],
   "pages": {
-    "/": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/index.js"
-    ],
     "/_app": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
@@ -32,30 +27,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/dashboard-chat-e.js"
     ],
-    "/dashboard-confi-e": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/dashboard-confi-e.js"
-    ],
-    "/dashboard-incidentes-e": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/dashboard-incidentes-e.js"
-    ],
     "/dashboard-inicio-e": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/dashboard-inicio-e.js"
-    ],
-    "/dashboard-monitoreo-e": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/dashboard-monitoreo-e.js"
-    ],
-    "/dashboard-reportes-e": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/dashboard-reportes-e.js"
     ]
   },
   "ampFirstPages": []
