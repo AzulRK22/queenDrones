@@ -16,5 +16,11 @@
     "files": [
       "static/chunks/node_modules_react-leaflet_lib_index_js.js"
     ]
+  },
+  "public/src/components/MapComponent.js -> react-leaflet": {
+    "id": "public/src/components/MapComponent.js -> react-leaflet",
+    "files": [
+      "static/chunks/node_modules_react-leaflet_lib_index_js.js"
+    ]
   }
 }

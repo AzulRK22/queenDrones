@@ -15,7 +15,7 @@ import ChatGPT from '../public/src/components/chatgpt'; // Ensure the casing mat
 
 
 
-const DashboardReportesE = () => {
+const DashboardChatE = () => {
   return (
     <div className={styles.container}>
       <Sidebar />
@@ -53,4 +53,4 @@ const DashboardReportesE = () => {
   );
 };
 
-export default DashboardReportesE;
+export default DashboardChatE;

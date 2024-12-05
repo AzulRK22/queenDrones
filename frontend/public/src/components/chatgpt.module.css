@@ -10,12 +10,12 @@
 }
 
 .chatbotHeader {
-    background: #007bff;
+    background: #032a55;
     color: white;
     padding: 15px;
     text-align: center;
     font-size: 1.5rem;
-    border-bottom: 1px solid #0056b3;
+    border-bottom: 1px solid #032a55;
 }
 
 .chatbotMessages {
@@ -66,7 +66,7 @@
 }
 
 .chatbotInput input:focus {
-    border-color: #007bff;
+    border-color: #032a55;
 }
 
 .chatbotInput button {
@@ -74,7 +74,7 @@
     padding: 12px 20px;
     border: none;
     border-radius: 20px;
-    background: #007bff;
+    background: #032a55;
     color: white;
     font-size: 0.9rem;
     cursor: pointer;

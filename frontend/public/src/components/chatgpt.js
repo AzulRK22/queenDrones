@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import styles from './chatgpt.module.css'; // Ensure this file exists and has the correct styles
+import styles from './chatgpt.module.css'; // Asegúrate de que este archivo tenga los estilos correspondientes
 
 const ChatGPT = () => {
     const [messages, setMessages] = useState([]);
@@ -8,8 +8,9 @@ const ChatGPT = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [showEmergencyForm, setShowEmergencyForm] = useState(false);
 
-    // Use a variable for the API key
-    const apiKey = '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'; // Replace this with your actual API key
+    // Usa una variable para la clave de la API
+    const apiKey = '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'; // Reemplaza esto con tu clave de API real
+
     const handleSend = async () => {
         if (input.trim()) {
             const userMessage = { text: input, sender: 'user' };
@@ -19,17 +20,17 @@ const ChatGPT = () => {
 
             try {
                 const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-                    model: "gpt-4-turbo", // Use gpt-4-turbo model
+                    model: "gpt-4-turbo", // Usar modelo gpt-4-turbo
                     messages: [
                         {
                             role: "system",
-                            content: "You are a specialized assistant trained to handle and report wildfire emergencies. When a user reports a wildfire, gather critical information such as location, size of the fire, nearby structures, and any injuries. Be clear, concise, and supportive."
+                            content: "You are a helpful assistant specializing in agriculture, irrigation systems, and wildfire management. Provide detailed advice and support, offering solutions based on available data."
                         },
                         { role: "user", content: input },
                     ],
                 }, {
                     headers: {
-                        'Authorization': `Bearer ${apiKey}`, // Use the apiKey variable here
+                        'Authorization': `Bearer ${apiKey}`, // Usa la variable apiKey aquí
                         'Content-Type': 'application/json',
                     },
                 });
@@ -68,7 +69,7 @@ const ChatGPT = () => {
     return (
         <div className={styles.chatbotContainer}>
             <div className={styles.chatbotHeader}>
-                <h2>Wildfire Reporting Agent</h2>
+                <h2>Emergency Response & Agriculture Assistant</h2>
             </div>
             <div className={styles.chatbotMessages}>
                 {messages.map((message, index) => (
