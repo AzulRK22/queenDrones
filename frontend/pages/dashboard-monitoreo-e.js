@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 import FlightTakeoffIcon from "@mui/icons-material/FlightTakeoff";
 import axios from "axios";
 import {
@@ -13,15 +13,18 @@ import {
   FormControlLabel,
   TextField,
   Tab,
-  Tabs
+  Tabs,
 } from "@mui/material";
 import Sidebar from "../public/src/components/Sidebar";
 import styles from "../public/src/components/Dashboard.module.css";
 
 // Importamos dinámicamente Leaflet para evitar errores en el servidor
-const LeafletMap = dynamic(() => import('../public/src/components/LeafletMap'), {
-  ssr: false, // Desactiva el renderizado en el servidor
-});
+const LeafletMap = dynamic(
+  () => import("../public/src/components/LeafletMap"),
+  {
+    ssr: false, // Desactiva el renderizado en el servidor
+  }
+);
 
 // Importamos el componente de WaypointMapWrapper
 import WaypointMapWrapper from "../public/src/components/HistoricMap";
@@ -162,6 +165,7 @@ const DashboardMonitoreo = () => {
             <Tab label="Map with Inputs" />
             <Tab label="Drone Configuration" />
             <Tab label="Anomaly detection" />
+            <Tab label="Historical Data" />
           </Tabs>
 
           {/* Tab 1: Map with Inputs */}
@@ -170,8 +174,8 @@ const DashboardMonitoreo = () => {
               {/* Using an iframe to load the HTML file */}
               <iframe
                 src="/htmls/cdmx_map2.html" // Path relative to the public folder
-                width="100%" 
-                height="600px" 
+                width="100%"
+                height="600px"
                 frameBorder="0"
                 title="CDMX Map"
                 style={{ border: "none", height: "500px" }} // Adjust height to fit screen
@@ -252,7 +256,9 @@ const DashboardMonitoreo = () => {
                   control={
                     <Switch
                       checked={mode === "high"}
-                      onChange={(e) => setMode(e.target.checked ? "high" : "low")}
+                      onChange={(e) =>
+                        setMode(e.target.checked ? "high" : "low")
+                      }
                       sx={{
                         "& .MuiSwitch-switchBase": {
                           color: "#FB8C00",
@@ -311,10 +317,25 @@ const DashboardMonitoreo = () => {
               {/* Using an iframe to load the anomaly detection page */}
               <iframe
                 src="/htmls/anomaly.html" // Path relative to the public folder
-                width="100%" 
-                height="600px" 
+                width="100%"
+                height="600px"
                 frameBorder="0"
                 title="Anomaly Detection"
+                style={{ border: "none", height: "500px" }} // Adjust height to fit screen
+              ></iframe>
+            </div>
+          )}
+
+          {/* Tab 4: Historical Data*/}
+          {value === 3 && (
+            <div>
+              {/* Using an iframe to load the anomaly detection page */}
+              <iframe
+                src="/htmls/historical.html" // Path relative to the public folder
+                width="100%"
+                height="600px"
+                frameBorder="0"
+                title="Historical Data"
                 style={{ border: "none", height: "500px" }} // Adjust height to fit screen
               ></iframe>
             </div>
