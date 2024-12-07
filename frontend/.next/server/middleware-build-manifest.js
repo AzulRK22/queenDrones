@@ -19,10 +19,20 @@ self.__BUILD_MANIFEST = {
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
+    "/dashboard-chat-e": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/dashboard-chat-e.js"
+    ],
     "/dashboard-confi-e": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/dashboard-confi-e.js"
+    ],
+    "/dashboard-incidentes-e": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/dashboard-incidentes-e.js"
     ],
     "/dashboard-inicio-e": [
       "static/chunks/webpack.js",
@@ -33,6 +43,11 @@ self.__BUILD_MANIFEST = {
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/dashboard-monitoreo-e.js"
+    ],
+    "/dashboard-reportes-e": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/dashboard-reportes-e.js"
     ]
   },
   "ampFirstPages": []

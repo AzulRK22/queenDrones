@@ -1,5 +1,16 @@
 import React, { useState } from "react";
-import { Box, Typography, Tabs, Tab, Card, CardMedia, CardContent, Avatar, Grid, Paper } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Tabs,
+  Tab,
+  Card,
+  CardMedia,
+  CardContent,
+  Avatar,
+  Grid,
+  Paper,
+} from "@mui/material";
 import Sidebar from "../public/src/components/Sidebar";
 import styles from "../public/src/components/Dashboard.module.css";
 
@@ -66,61 +77,64 @@ const DashboardIConfiguracionE = () => {
                 Welcome to EcoVentus
               </Typography>
               <Typography variant="body1" paragraph>
-                Welcome to EcoVentus, where innovation meets sustainability. We specialize in
-                cutting-edge technology to address critical environmental and industrial challenges. Our
-                mission is to create efficient, scalable solutions that bridge the gap between renewable
-                energy and sustainable agriculture.
+                Welcome to EcoVentus, where innovation meets sustainability. We
+                specialize in cutting-edge technology to address critical
+                environmental and industrial challenges. Our mission is to
+                create efficient, scalable solutions that bridge the gap between
+                renewable energy and sustainable agriculture.
               </Typography>
               <Typography variant="body1" paragraph>
-                At the heart of our work is the integration of Artificial Intelligence (AI), Geographical
-                Information Systems (GIS), and advanced drone and satellite technologies. By leveraging
-                these tools, we deliver real-time insights for managing photovoltaic and agro-photovoltaic
-                systems, optimizing clean energy production, and improving agricultural yields.
+                At the heart of our work is the integration of Artificial
+                Intelligence (AI), Geographical Information Systems (GIS), and
+                advanced drone and satellite technologies. By leveraging these
+                tools, we deliver real-time insights for managing photovoltaic
+                and agro-photovoltaic systems, optimizing clean energy
+                production, and improving agricultural yields.
               </Typography>
               <Typography variant="body1" paragraph>
-                EcoVentus is more than a technology provider; we are committed to a sustainable future.
-                Our work contributes to carbon emission reduction, food security, and a resilient green
-                economy. Together, we aim to shape a world where technology and sustainability go hand
-                in hand.
+                EcoVentus is more than a technology provider; we are committed
+                to a sustainable future. Our work contributes to carbon emission
+                reduction, food security, and a resilient green economy.
+                Together, we aim to shape a world where technology and
+                sustainability go hand in hand.
               </Typography>
               <Box sx={{ textAlign: "center", marginTop: 3 }}>
-                <img src="/images/eco.png" alt="EcoVentus" style={{ maxWidth: "100%", borderRadius: "10px" }} />
+                <img
+                  src="/images/eco.png"
+                  alt="EcoVentus"
+                  style={{ maxWidth: "100%", borderRadius: "10px" }}
+                />
               </Box>
             </Box>
           )}
 
           {selectedTab === 1 && (
-            <Box
-              sx={{
-                padding: 3,
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-                gap: 3,
-              }}
-            >
+            <Box className={styles.teamContainer}>
               {teamMembers.map((member, index) => (
-                <Card key={index} sx={{ textAlign: "center", borderRadius: "15px", boxShadow: "none",  border: "none", backgroundColor: "transparent",}}>
-                  <CardMedia
-                    component="img"
-                    image={member.photo}
+                <Paper key={index} className={styles.card}>
+                  <img
+                    src={member.photo}
                     alt={member.name}
-                    sx={{ height: 200, objectFit: "contain", backgroundColor: "transparent",boxShadow: "none", border: "none", borderRadius: "15px 15px 0 0" }}
+                    className={styles.card}
                   />
-                  <CardContent>
+                  <div className={styles.cardContent}>
                     <Typography variant="h6" gutterBottom>
                       {member.name}
                     </Typography>
                     <Typography color="textSecondary" variant="subtitle1">
                       {member.university}
                     </Typography>
-                    <Typography variant="subtitle2" sx={{ fontStyle: "italic", color: "primary.main" }}>
+                    <Typography
+                      variant="subtitle2"
+                      sx={{ fontStyle: "italic", color: "primary.main" }}
+                    >
                       {member.role}
                     </Typography>
                     <Typography variant="body2" sx={{ marginTop: 1 }}>
                       {member.experience}
                     </Typography>
-                  </CardContent>
-                </Card>
+                  </div>
+                </Paper>
               ))}
             </Box>
           )}
