@@ -60,7 +60,7 @@ const Sidebar = () => {
             className={`${styles.navItem} ${isActive('/dashboard-chat-e') ? styles.active : ''}`}
             onClick={() => handleNavigation('/dashboard-chat-e')}
           >
-            <img src="/icons/Folder.svg" alt="Reports Icon" className={styles.icon} />
+            <img src="/icons/chat.svg" alt="Chat Icon" className={styles.icon} />
             <span className={styles.navText}>Virtual Assistant</span>
           </button>
         </li>
@@ -69,8 +69,8 @@ const Sidebar = () => {
             className={`${styles.navItem} ${isActive('/dashboard-confi-e') ? styles.active : ''}`}
             onClick={() => handleNavigation('/dashboard-confi-e')}
           >
-            <img src="/icons/Setting.svg" alt="Settings Icon" className={styles.icon} />
-            <span className={styles.navText}>Configuration</span>
+            <img src="/icons/about.svg" alt="About Icon" className={styles.icon} />
+            <span className={styles.navText}>About us</span>
           </button>
         </li>
         <li>

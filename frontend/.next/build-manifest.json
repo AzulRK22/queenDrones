@@ -22,15 +22,20 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/dashboard-chat-e": [
+    "/dashboard-confi-e": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/dashboard-chat-e.js"
+      "static/chunks/pages/dashboard-confi-e.js"
     ],
     "/dashboard-inicio-e": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/dashboard-inicio-e.js"
+    ],
+    "/dashboard-monitoreo-e": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/dashboard-monitoreo-e.js"
     ]
   },
   "ampFirstPages": []
