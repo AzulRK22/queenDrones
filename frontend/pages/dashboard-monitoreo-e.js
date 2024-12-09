@@ -166,6 +166,8 @@ const DashboardMonitoreo = () => {
             <Tab label="Drone Configuration" />
             <Tab label="Anomaly detection" />
             <Tab label="Historical Data" />
+            <Tab label="KPI Dashboard" />
+            <Tab label="Sensor Data" />
           </Tabs>
 
           {/* Tab 1: Map with Inputs */}
@@ -345,6 +347,37 @@ const DashboardMonitoreo = () => {
                 height="600px"
                 frameBorder="0"
                 title="Historical Data"
+                style={{ border: "none", height: "500px" }} // Adjust height to fit screen
+              ></iframe>
+            </div>
+          )}
+
+
+          {/* Tab 4: KPI Dashboard*/}
+           {value === 4 && (
+            <div>
+              {/* Using an iframe to load the anomaly detection page */}
+              <iframe
+                src="/htmls/kpi_dashboard.html" // Path relative to the public folder
+                width="100%"
+                height="600px"
+                frameBorder="0"
+                title="KPI Dashboard"
+                style={{ border: "none", height: "500px" }} // Adjust height to fit screen
+              ></iframe>
+            </div>
+          )}
+
+          {/* Tab 4: KPI Dashboard*/}
+          {value === 5 && (
+            <div>
+              {/* Using an iframe to load the anomaly detection page */}
+              <iframe
+                src="/htmls/sensor_data.html" // Path relative to the public folder
+                width="100%"
+                height="600px"
+                frameBorder="0"
+                title="Sensor Data"
                 style={{ border: "none", height: "500px" }} // Adjust height to fit screen
               ></iframe>
             </div>

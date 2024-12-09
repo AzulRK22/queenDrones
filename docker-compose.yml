@@ -3,8 +3,9 @@ services:
   backend:
     build:
       context: ./backend
+    image: queen-drones-backend:latest
     ports:
-      - "5001:5000" # Map
+      - "5001:5000" 
     networks:
       - app-network
 
@@ -12,19 +13,15 @@ services:
     build:
       context: ./frontend
       args:
-        REACT_APP_API_URL_BUILD: "http://localhost:5001" # Backend URL during build
+        REACT_APP_API_URL_BUILD: "http://localhost:5001" 
+    image: queen-drones-frontend:latest
     environment:
-      REACT_APP_API_URL: "http://backend:5001" # Backend URL during runtime
+      REACT_APP_API_URL: "http://backend:5001" 
     ports:
       - "3000:80"
     networks:
       - app-network
 
-
 networks:
   app-network:
-    driver: bridge
-
-
-
-
+    driver: bridge 
