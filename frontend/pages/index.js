@@ -39,7 +39,7 @@ const Home = () => {
             fontFamily: 'Montserrat, sans-serif',
           }}
         >
-          Identifícate
+          Welcome
         </Typography>
         <Box display="flex" justifyContent="center" spacing={2}>
           <Link href="/dashboard-inicio-e" passHref>
