@@ -4,15 +4,28 @@ import L from 'leaflet';
 
 const LeafletMap = () => {
   useEffect(() => {
-    const map = L.map('custom-map').setView([19.07500770940618, -98.91338570692821], 11);
+    const map = L.map('custom-map').setView([23.6345, -102.5528], 5); // Centrado en México
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
 
-    L.marker([19.07500770940618, -98.91338570692821]).addTo(map)
-      .bindPopup('Estás aquí.')
-      .openPopup();
+    // Suponiendo que tienes un archivo geojson con los datos de sequía
+    fetch('/path-to-drought-geojson.json')
+      .then(response => response.json())
+      .then(data => {
+        L.geoJSON(data, {
+          style: function (feature) {
+            return {
+              color: feature.properties.severity === 'Severe' ? 'red' : 'orange',
+              weight: 2,
+              opacity: 1,
+              fillOpacity: 0.5,
+            };
+          },
+        }).addTo(map);
+      })
+      .catch(err => console.error('Error loading drought data:', err));
 
   }, []);
 
@@ -32,3 +45,4 @@ const LeafletMap = () => {
 };
 
 export default LeafletMap;
+

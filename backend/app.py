@@ -1,8 +1,10 @@
 import datetime
 import os
 import traceback
+from bs4 import BeautifulSoup
 from flask import Flask, jsonify, request, send_from_directory, current_app
 from flask_cors import CORS
+import requests
 from config import Config
 from extensions import db, migrate
 import subprocess
@@ -248,7 +250,30 @@ def create_app():
         return "Welcome to the Backend!"
 
 
+    @app.route('/scrape-section')
+    def scrape_section():
+        try:
+            # Realiza la solicitud GET a la página externa
+            response = requests.get('http://galileo.imta.mx/Sequias/moseq/mapaGob.html')
+            
+            # Comprueba si la solicitud fue exitosa
+            if response.status_code != 200:
+                return jsonify({"error": "Failed to fetch the page"}), 500
 
+            # Analiza el contenido HTML con BeautifulSoup
+            soup = BeautifulSoup(response.content, 'html.parser')
+
+            # Extraer solo la sección deseada
+            target_section = soup.select_one('body > main > section.section.grafica')
+
+            if not target_section:
+                return jsonify({"error": "Section not found"}), 404
+
+            # Devolver el HTML de la sección encontrada
+            return jsonify({"html": target_section.decode_contents()})
+
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
         
     return app
 

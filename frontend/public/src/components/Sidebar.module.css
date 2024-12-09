@@ -10,6 +10,11 @@
   flex-direction: column;
   align-items: center;
   transition: width 0.3s ease;
+  box-sizing: border-box;
+  position: fixed;
+  display: flex;
+  justify-content: flex-start;
+  z-index: 2;
 }
 
 /* Logo */
@@ -40,6 +45,7 @@
   flex-direction: column;
   justify-content: center;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .navItem {
@@ -62,7 +68,7 @@
 .navItem:hover,
 .navItem.active {
   background-color: #4D6A9A;
-  transform: translateX(10px);
+  transform: translateX(0px);
 }
 
 .icon {

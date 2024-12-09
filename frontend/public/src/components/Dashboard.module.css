@@ -5,19 +5,36 @@
   font-family: 'Poppins', sans-serif;
   display: flex;
   height: 100vh;
-  background-color: #4D6A9A;
+  overflow: hidden;
+  background-image: url('/images/fondo2.jpeg'); /* Ruta de tu imagen */
+  background-size: cover; /* Asegura que la imagen se ajuste al tamaño del contenedor */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita que se repita */
+}
+/* Capa semitransparente */
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Capa negra semitransparente */
+  z-index: 1;
 }
 
 .content {
+  z-index: 2;
   font-family: 'Poppins', sans-serif;
+  margin-left: 400px;
   margin-top: 30px; /* Espaciado superior */
   margin-right: 20px; /* Espaciado derecho */
   margin-bottom: 45px;
   flex-grow: 1;
-  background-color: #4D6A9A;
+  background-color: #44506300;
   padding: 20px;
   box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total del contenedor */
-  overflow-y: auto;
+  overflow: auto;
 }
 .header {
   font-family: 'Poppins', sans-serif;
@@ -63,6 +80,7 @@
   background-color: #fff;
   border-radius: 20px;
   padding: 20px;
+  min-height: 900px;
   height: auto; /* Ajusta la altura según el espacio disponible */
 }
 .notificationIcon {
@@ -152,5 +170,43 @@
   transform: translateY(0);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+.teamContainer {
+  display: flex; /* Usa Flexbox para el diseño horizontal */
+  justify-content: center; /* Centrar horizontalmente todas las tarjetas */
+  align-items: flex-start; /* Alinear todas las tarjetas por la parte superior */
+  gap: 20px; /* Espacio horizontal entre tarjetas */
+  padding: 20px;
+  overflow-x: auto; /* Permite desplazarse horizontalmente si es necesario */
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  width: 250px; /* Establece un tamaño constante para todas las tarjetas */
+  border: none; /* Sin bordes */
+  box-shadow: none; /* Sin sombras */
+  background-color: transparent; /* Sin fondo adicional */
+  height: 600px; /* Establece una altura fija para que todas tengan el mismo tamaño */
+}
+
+.card img {
+  height: 150px; /* Tamaño uniforme para la imagen */
+  object-fit: contain; /* Mantiene las proporciones de la imagen sin recortes */
+  margin-bottom: 10px; /* Espacio entre la foto y el texto */
+}
+
+.cardContent {
+  font-size: 14px;
+  padding: 10px;
+  text-align: center;
+  word-wrap: break-word; /* Evita que el texto se salga del área de la tarjeta */
+  height: auto;
+}
+
+
+
 
   
