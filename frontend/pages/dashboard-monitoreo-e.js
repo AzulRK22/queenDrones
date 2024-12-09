@@ -155,7 +155,7 @@ const DashboardMonitoreo = () => {
             <div>
               {/* Using an iframe to load the HTML file */}
               <iframe
-                src="/htmls/cdmx_map2.html" // Path relative to the public folder
+                src="/htmls/map2.html" // Path relative to the public folder
                 width="100%"
                 height="600px"
                 frameBorder="0"
