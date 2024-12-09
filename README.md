@@ -99,14 +99,28 @@ Ensure you have the following installed:
 
 ## Screenshots
 
-### Analysis
-![Analysis Screenshot](sample_data/analysis.png)
+### Home
+![Home Screenshot](sample_data/home.png)
 
 ### Monitoring
-![Monitoring Screenshot](sample_data/monitoring.png)
+![Monitoring Screenshot](sample_data/monitoring1.png)
+![Monitoring Screenshot](sample_data/monitoring2.png)
+![Monitoring Screenshot](sample_data/monitoring3.png)
+![Monitoring Screenshot](sample_data/monitoring4.png)
+![Monitoring Screenshot](sample_data/monitoring5.png)
+![Monitoring Screenshot](sample_data/monitoring6.png)
+
+### Reports
+![Report Screenshot](sample_data/reports.png)
+
+### Incidents
+![Incidents Screenshot](sample_data/incidents.png)
 
 ### Virtual Assistant
-![Virtual Assistant Screenshot](sample_data/virtual_assistant.png)
+![Virtual Assistant Screenshot](sample_data/virtual.png)
+
+### About us
+![About Screenshot](sample_data/about.png)
 
 ## **Use Cases**
 ### **1. Renewable Energy**
