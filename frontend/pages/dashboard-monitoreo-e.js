@@ -17,6 +17,7 @@ import {
 } from "@mui/material";
 import Sidebar from "../public/src/components/Sidebar";
 import styles from "../public/src/components/Dashboard.module.css";
+import DataTable from "../public/src/components/DataTable";
 
 // Importamos dinámicamente Leaflet para evitar errores en el servidor
 const LeafletMap = dynamic(
@@ -27,7 +28,7 @@ const LeafletMap = dynamic(
 );
 
 // Importamos el componente de WaypointMapWrapper
-import WaypointMapWrapper from "../public/src/components/HistoricMap";
+import WaypointMapWrapper from "../public/src/components/WaypointMapWrapper";
 
 const DashboardMonitoreo = () => {
   const [missions, setMissions] = useState([]);
@@ -209,7 +210,18 @@ const DashboardMonitoreo = () => {
           {/* Tab 2: Initial Map & Drone Configuration */}
           {value === 1 && (
             <div>
-              <WaypointMapWrapper />
+              {loading ? (
+                <Typography>Loading...</Typography>
+              ) : error ? (
+                <Typography color="error">{error}</Typography>
+              ) : (
+                <DataTable
+                  routes={missions}
+                  onSelectRoute={handleRouteSelect}
+                  onDownloadRoute={handleDownloadRoute}
+                />
+              )}
+              <WaypointMapWrapper selectedRoute={selectedRoute} />
               <Box className={styles.configPanel}>
                 <Typography variant="h6" gutterBottom>
                   Drone Configuration
@@ -332,9 +344,8 @@ const DashboardMonitoreo = () => {
             </div>
           )}
 
-
           {/* Tab 4: KPI Dashboard*/}
-           {value === 4 && (
+          {value === 4 && (
             <div>
               {/* Using an iframe to load the anomaly detection page */}
               <iframe
